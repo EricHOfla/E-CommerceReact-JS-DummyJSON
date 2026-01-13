@@ -1,22 +1,23 @@
+// src/context/ProductsContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../api/axios"; // your axios instance
+import api from "../api/axios"; // make sure baseURL is https://dummyjson.com
 
 const ProductsContext = createContext();
 
 export const ProductsProvider = ({ children }) => {
-  // 1️⃣ Load from localStorage first
   const [products, setProducts] = useState(() => {
+    // 1️⃣ Load from localStorage first
     const stored = localStorage.getItem("products");
     return stored ? JSON.parse(stored) : [];
   });
 
   const [loading, setLoading] = useState(products.length === 0);
+  const [error, setError] = useState(null);
 
-  // 2️⃣ Fetch from API only if localStorage is empty
   useEffect(() => {
     const fetchProducts = async () => {
+      // 2️⃣ If localStorage already has data, skip API
       if (products.length > 0) {
-        // Already have products in localStorage
         setLoading(false);
         return;
       }
@@ -25,10 +26,13 @@ export const ProductsProvider = ({ children }) => {
         const res = await api.get("/products");
         const fetchedProducts = res.data.products;
         setProducts(fetchedProducts);
+
+        // Save to localStorage
         localStorage.setItem("products", JSON.stringify(fetchedProducts));
       } catch (err) {
         console.error("Failed to fetch products:", err);
-        alert("Failed to load products from API.");
+        setError("Failed to load products from API");
+        alert("Failed to load products from API");
       } finally {
         setLoading(false);
       }
@@ -37,7 +41,7 @@ export const ProductsProvider = ({ children }) => {
     fetchProducts();
   }, [products.length]);
 
-  // 3️⃣ Keep localStorage in sync whenever products change
+  // Keep localStorage in sync when products change
   useEffect(() => {
     if (products.length > 0) {
       localStorage.setItem("products", JSON.stringify(products));
@@ -45,7 +49,7 @@ export const ProductsProvider = ({ children }) => {
   }, [products]);
 
   return (
-    <ProductsContext.Provider value={{ products, setProducts, loading }}>
+    <ProductsContext.Provider value={{ products, setProducts, loading, error }}>
       {children}
     </ProductsContext.Provider>
   );
