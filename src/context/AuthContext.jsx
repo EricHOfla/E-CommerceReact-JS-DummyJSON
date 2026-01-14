@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useEffect } from "react";
+import { createContext, useContext, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -6,20 +6,13 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
-
-  // Load user from localStorage on first render
-  useEffect(() => {
+  // Initialize from localStorage to persist session across refresh
+  const [user, setUser] = useState(() => {
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
-  }, []);
+    return storedUser ? JSON.parse(storedUser) : null;
+  });
 
-  // Login functionimport axios from "axios";
-
-const login = async (username, password) => {
-  try {
+  const login = async (username, password) => {
     const response = await axios.post(
       "https://dummyjson.com/auth/login",
       `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`,
@@ -33,23 +26,18 @@ const login = async (username, password) => {
     const loggedUser = response.data;
     setUser(loggedUser);
     localStorage.setItem("user", JSON.stringify(loggedUser));
-    console.log("Login successful:", loggedUser);
-  } catch (error) {
-    console.error("Login failed:", error.response?.data || error.message);
-    alert("Invalid credentials!");
-  }
-};
+    return loggedUser;
+  };
 
-
-
-  // Logout function
   const logout = () => {
     setUser(null);
     localStorage.removeItem("user");
   };
 
+  const token = user?.token || null;
+
   return (
-    <AuthContext.Provider value={{ user, login, logout }}>
+    <AuthContext.Provider value={{ user, token, isAuthenticated: !!user, login, logout }}>
       {children}
     </AuthContext.Provider>
   );
