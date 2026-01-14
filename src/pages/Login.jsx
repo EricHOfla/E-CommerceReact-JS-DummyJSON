@@ -15,7 +15,7 @@ const LoginPage = () => {
     try {
       setLoading(true);
       await login(username, password);
-      navigate("/products");
+      navigate("/");
     } catch (err) {
       alert("Invalid username or password");
     } finally {
