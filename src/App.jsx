@@ -4,7 +4,8 @@ import Home from "./pages/Home.jsx";
 import Category from "./pages/Category.jsx";
 import DashboardPage from "./pages/Dashboard.jsx";
 import Wishlist from "./pages/Wishlist.jsx"; 
-import Cart from "./pages/Cart.jsx"; 
+import Cart from "./pages/Cart.jsx";
+import About from "./pages/About.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
@@ -16,6 +17,9 @@ function App() {
 
         {/* Home page (public overview) */}
         <Route path="/" element={<Home />} />
+
+        {/* About page */}
+        <Route path="/about" element={<About />} />
 
         {/* Products - All products */}
         <Route path="/products" element={<Category />} />

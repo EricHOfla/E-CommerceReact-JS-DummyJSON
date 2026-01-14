@@ -310,6 +310,7 @@ const Home = () => {
                   <li><a href="/products" className="hover:text-white transition-colors">Shop</a></li>
                   <li><a href="/cart" className="hover:text-white transition-colors">Cart</a></li>
                   <li><a href="/wishlist" className="hover:text-white transition-colors">Wishlist</a></li>
+                  <li><a href="/about" className="hover:text-white transition-colors">About</a></li>
                   <li><a href="/dashboard" className="hover:text-white transition-colors">Dashboard</a></li>
                 </ul>
               </div>
