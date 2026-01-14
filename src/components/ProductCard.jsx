@@ -2,10 +2,12 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../context/CartContext";
 import { useWishlist } from "../context/WishlistContext";
+import { useAuth } from "../context/AuthContext";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
   const { addToWishlist, wishlist } = useWishlist();
+  const { user } = useAuth();
   const navigate = useNavigate();
   const [showAddedToCart, setShowAddedToCart] = useState(false);
   const [showAddedToWishlist, setShowAddedToWishlist] = useState(false);
@@ -23,6 +25,10 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     addToCart(product);
     setShowAddedToCart(true);
     setTimeout(() => setShowAddedToCart(false), 2000);
@@ -30,6 +36,10 @@ const ProductCard = ({ product }) => {
 
   const handleAddToWishlist = (e) => {
     e.stopPropagation();
+    if (!user) {
+      navigate("/login");
+      return;
+    }
     addToWishlist(product);
     setShowAddedToWishlist(true);
     setTimeout(() => setShowAddedToWishlist(false), 2000);

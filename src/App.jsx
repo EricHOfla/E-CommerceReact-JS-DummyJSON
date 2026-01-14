@@ -14,35 +14,14 @@ function App() {
         {/* Public route */}
         <Route path="/login" element={<LoginPage />} />
 
-        {/* Home page */}
-        <Route
-          path="/"
-          element={
-            <ProtectedRoute>
-              <Home />
-            </ProtectedRoute>
-          }
-        />
+        {/* Home page (public overview) */}
+        <Route path="/" element={<Home />} />
 
         {/* Products - All products */}
-        <Route
-          path="/products"
-          element={
-            <ProtectedRoute>
-              <Category />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/products" element={<Category />} />
 
         {/* Products - By category */}
-        <Route
-          path="/products/:name"
-          element={
-            <ProtectedRoute>
-              <Category />
-            </ProtectedRoute>
-          }
-        />
+        <Route path="/products/:name" element={<Category />} />
 
         {/* Cart */}
         <Route

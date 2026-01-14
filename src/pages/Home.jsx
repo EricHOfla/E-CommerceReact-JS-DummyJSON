@@ -23,6 +23,7 @@ const Home = () => {
 
   const featuredProducts = products.slice(0, 8);
   const dealsProducts = products.filter(p => p.discountPercentage > 15).slice(0, 4);
+  const goToProducts = () => navigate("/products");
 
   if (loading) {
     return (
@@ -64,13 +65,13 @@ const Home = () => {
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <button
-                    onClick={() => navigate("/products")}
+                    onClick={goToProducts}
                     className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
                   >
                     Shop Now
                   </button>
                   <button
-                    onClick={() => navigate("/products")}
+                    onClick={goToProducts}
                     className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-600 transition-all"
                   >
                     View Deals
@@ -100,7 +101,7 @@ const Home = () => {
                   <div className="absolute inset-0 bg-gradient-to-tr from-yellow-300 to-pink-300 rounded-3xl transform rotate-6 opacity-20"></div>
                   <div className="relative bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
                     <div className="grid grid-cols-2 gap-4">
-                      {featuredProducts.slice(0, 4).map((product, index) => (
+                      {featuredProducts.slice(0, 4).map((product) => (
                         <div key={product.id} className="bg-white rounded-xl p-3 shadow-lg transform hover:scale-105 transition-transform">
                           <img
                             src={product.thumbnail || product.images?.[0] || "https://via.placeholder.com/150"}
@@ -263,7 +264,7 @@ const Home = () => {
 
           <div className="text-center mt-12">
             <button
-              onClick={() => navigate("/products")}
+              onClick={goToProducts}
               className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-10 py-4 rounded-lg font-bold text-lg transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
             >
               View All Products
