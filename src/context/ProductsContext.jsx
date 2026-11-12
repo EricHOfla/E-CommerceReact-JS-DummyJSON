@@ -1,52 +1,43 @@
-// src/context/ProductsContext.jsx
 import { createContext, useContext, useEffect, useState } from "react";
-import api from "../api/axios"; // make sure baseURL is https://dummyjson.com
+import api from "../api/axios";
 
-const ProductsContext = createContext();
+const ProductsContext = createContext(null);
 
 export const ProductsProvider = ({ children }) => {
-  const [products, setProducts] = useState(() => {
-    // 1️⃣ Load from localStorage first
-    const stored = localStorage.getItem("products");
-    return stored ? JSON.parse(stored) : [];
-  });
-
-  const [loading, setLoading] = useState(products.length === 0);
-  const [error, setError] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
+    let active = true;
+
     const fetchProducts = async () => {
-      // 2️⃣ If localStorage already has data, skip API
-      if (products.length > 0) {
-        setLoading(false);
-        return;
-      }
-
+      setLoading(true);
+      setError("");
       try {
-        const res = await api.get("/products");
-        const fetchedProducts = res.data.products;
-        setProducts(fetchedProducts);
-
-        // Save to localStorage
-        localStorage.setItem("products", JSON.stringify(fetchedProducts));
+        const { data } = await api.get("/products", { params: { limit: 100 } });
+        if (!Array.isArray(data?.products)) {
+          throw new Error("The product service returned an unexpected response.");
+        }
+        if (active) setProducts(data.products);
       } catch (err) {
-        console.error("Failed to fetch products:", err);
-        setError("Failed to load products from API");
-        alert("Failed to load products from API");
+        if (active) {
+          setError(
+            err.response?.data?.message ||
+              err.message ||
+              "We couldn't load products. Please try again."
+          );
+        }
       } finally {
-        setLoading(false);
+        if (active) setLoading(false);
       }
     };
 
     fetchProducts();
-  }, [products.length]);
-
-  // Keep localStorage in sync when products change
-  useEffect(() => {
-    if (products.length > 0) {
-      localStorage.setItem("products", JSON.stringify(products));
-    }
-  }, [products]);
+    return () => {
+      active = false;
+    };
+  }, []);
 
   return (
     <ProductsContext.Provider value={{ products, setProducts, loading, error }}>
@@ -55,4 +46,8 @@ export const ProductsProvider = ({ children }) => {
   );
 };
 
-export const useProducts = () => useContext(ProductsContext);
+export const useProducts = () => {
+  const context = useContext(ProductsContext);
+  if (!context) throw new Error("useProducts must be used within a ProductsProvider");
+  return context;
+};
