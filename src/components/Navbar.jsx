@@ -110,6 +110,31 @@ const Navbar = () => {
             </h1>
           </div>
 
+          {/* Main navigation links */}
+          <div className="hidden md:flex items-center gap-5 whitespace-nowrap">
+            <button
+              type="button"
+              onClick={() => navigate("/")}
+              className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            >
+              Home
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/products")}
+              className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            >
+              Shop
+            </button>
+            <button
+              type="button"
+              onClick={() => navigate("/about")}
+              className="text-gray-700 font-medium hover:text-blue-600 transition-colors"
+            >
+              About
+            </button>
+          </div>
+
           {/* Search Bar - Desktop */}
           <form onSubmit={handleSearch} className="hidden lg:flex flex-1 max-w-2xl">
             <div className="relative w-full">
