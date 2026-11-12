@@ -29,7 +29,7 @@ const Home = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+        <div className="min-h-screen bg-slate-50 flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600 mb-4"></div>
             <p className="text-gray-600 text-lg font-medium">Loading amazing products...</p>
@@ -42,10 +42,10 @@ const Home = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="min-h-screen bg-slate-50">
         {error && <div role="alert" className="mx-auto max-w-7xl px-4 pt-6"><div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div></div>}
         {/* Hero Section */}
-        <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white overflow-hidden">
+        <div className="relative overflow-hidden bg-slate-950 text-white">
           {/* Background Pattern */}
           <div className="absolute inset-0 opacity-10">
             <div className="absolute inset-0" style={{
@@ -57,23 +57,23 @@ const Home = () => {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
               {/* Hero Text */}
               <div className="text-center lg:text-left">
-                <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-6 leading-tight">
+                <h1 className="text-4xl font-bold leading-[1.08] tracking-tight mb-6 sm:text-5xl lg:text-6xl">
                   Shop Smart,
-                  <span className="block text-yellow-300">Live Better</span>
+                  <span className="block text-cyan-300">Live Better</span>
                 </h1>
-                <p className="text-xl md:text-2xl text-blue-100 mb-8 max-w-2xl">
+                <p className="text-base leading-7 text-slate-300 mb-8 max-w-xl sm:text-lg">
                   Discover amazing products at unbeatable prices. Your one-stop shop for everything you need.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                   <button
                     onClick={goToProducts}
-                    className="bg-white text-blue-600 px-8 py-4 rounded-lg font-bold text-lg hover:bg-gray-100 transition-all shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+                    className="bg-white text-slate-950 px-7 py-3.5 rounded-xl font-semibold text-base hover:bg-cyan-100 transition-all shadow-lg"
                   >
                     Shop Now
                   </button>
                   <button
                     onClick={goToProducts}
-                    className="bg-transparent border-2 border-white text-white px-8 py-4 rounded-lg font-bold text-lg hover:bg-white hover:text-blue-600 transition-all"
+                    className="bg-white/10 border border-white/20 text-white px-7 py-3.5 rounded-xl font-semibold text-base hover:bg-white/15 transition-all"
                   >
                     View Deals
                   </button>
@@ -100,10 +100,10 @@ const Home = () => {
               <div className="hidden lg:block">
                 <div className="relative">
                   <div className="absolute inset-0 bg-gradient-to-tr from-yellow-300 to-pink-300 rounded-3xl transform rotate-6 opacity-20"></div>
-                  <div className="relative bg-white bg-opacity-10 backdrop-blur-lg rounded-3xl p-8 shadow-2xl">
+                  <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-6 shadow-2xl ring-1 ring-white/10">
                     <div className="grid grid-cols-2 gap-4">
                       {featuredProducts.slice(0, 4).map((product) => (
-                        <div key={product.id} className="bg-white rounded-xl p-3 shadow-lg transform hover:scale-105 transition-transform">
+                        <div key={product.id} className="bg-white rounded-2xl p-3 shadow-lg transition-transform hover:-translate-y-1">
                           <img
                             src={product.thumbnail || product.images?.[0] || "https://via.placeholder.com/150"}
                             alt={product.title}
@@ -202,7 +202,7 @@ const Home = () => {
           <div className="text-center mt-8">
             <button
               onClick={() => navigate("/products")}
-              className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
+              className="bg-slate-950 hover:from-blue-700 hover:to-indigo-800 text-white px-8 py-3 rounded-lg font-semibold transition-all shadow-lg hover:shadow-xl"
             >
               View All Categories
             </button>
