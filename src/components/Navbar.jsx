@@ -44,7 +44,8 @@ const Navbar = () => {
       // You can implement search functionality here
       console.log("Searching for:", searchQuery);
       // For now, just navigate to products page
-      navigate("/products");
+      navigate(`/products?search=${encodeURIComponent(searchQuery.trim())}`);
+      setMobileMenuOpen(false);
     }
   };
 
