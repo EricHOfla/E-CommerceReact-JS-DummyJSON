@@ -7,6 +7,7 @@ import Wishlist from "./pages/Wishlist.jsx";
 import Cart from "./pages/Cart.jsx";
 import About from "./pages/About.jsx";
 import ProductDetails from "./pages/ProductDetails.jsx";
+import Checkout from "./pages/Checkout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
@@ -30,6 +31,9 @@ function App() {
 
         {/* Products - By category */}
         <Route path="/products/:name" element={<Category />} />
+
+        {/* Demo checkout */}
+        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
         {/* Cart */}
         <Route
