@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useProducts } from "../context/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
 
 const Category = () => {
   const { name } = useParams();
-  const { products, loading } = useProducts();
+  const [searchParams] = useSearchParams();
+  const { products, loading, error } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortBy, setSortBy] = useState("default");
   const [priceRange, setPriceRange] = useState("all");
   const [viewMode, setViewMode] = useState("grid");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get("search") || "");
+  }, [searchParams]);
 
   useEffect(() => {
     let filtered = name
@@ -19,9 +24,9 @@ const Category = () => {
       : products;
 
     // Apply search filter
-    if (searchQuery) {
+    if (searchQuery.trim()) {
       filtered = filtered.filter((p) =>
-        p.title?.toLowerCase().includes(searchQuery.toLowerCase())
+        [p.title, p.description, p.brand, p.category].some((value) => value?.toLowerCase().includes(searchQuery.trim().toLowerCase()))
       );
     }
 
@@ -69,6 +74,7 @@ const Category = () => {
       <Navbar />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        {error && <div role="alert" className="mx-auto max-w-7xl px-4 pt-6"><div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div></div>}
         {/* Modern Hero Section */}
         <div className="relative bg-white border-b border-gray-200 overflow-hidden">
           {/* Background Pattern */}

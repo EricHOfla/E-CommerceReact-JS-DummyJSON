@@ -6,7 +6,7 @@ import Navbar from "../components/Navbar";
 import axios from "axios";
 
 const Home = () => {
-  const { products, loading } = useProducts();
+  const { products, loading, error } = useProducts();
   const navigate = useNavigate();
   const [categories, setCategories] = useState([]);
 
@@ -43,6 +43,7 @@ const Home = () => {
     <>
       <Navbar />
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        {error && <div role="alert" className="mx-auto max-w-7xl px-4 pt-6"><div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div></div>}
         {/* Hero Section */}
         <div className="relative bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 text-white overflow-hidden">
           {/* Background Pattern */}

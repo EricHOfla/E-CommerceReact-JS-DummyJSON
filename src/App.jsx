@@ -6,6 +6,8 @@ import DashboardPage from "./pages/Dashboard.jsx";
 import Wishlist from "./pages/Wishlist.jsx"; 
 import Cart from "./pages/Cart.jsx";
 import About from "./pages/About.jsx";
+import ProductDetails from "./pages/ProductDetails.jsx";
+import Checkout from "./pages/Checkout.jsx";
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
 function App() {
@@ -21,11 +23,17 @@ function App() {
         {/* About page */}
         <Route path="/about" element={<About />} />
 
+        {/* Product details */}
+        <Route path="/product/:id" element={<ProductDetails />} />
+
         {/* Products - All products */}
         <Route path="/products" element={<Category />} />
 
         {/* Products - By category */}
         <Route path="/products/:name" element={<Category />} />
+
+        {/* Demo checkout */}
+        <Route path="/checkout" element={<ProtectedRoute><Checkout /></ProtectedRoute>} />
 
         {/* Cart */}
         <Route
