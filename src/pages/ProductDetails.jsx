@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useProducts } from "../context/ProductsContext";
@@ -21,10 +21,7 @@ const ProductDetails = () => {
   );
 
   const galleryImages = product ? [...new Set([product.thumbnail, ...(product.images || [])].filter(Boolean))] : [];
-
-  useEffect(() => {
-    setSelectedImage(galleryImages[0] || "");
-  }, [product?.id]);
+  const activeImage = galleryImages.includes(selectedImage) ? selectedImage : galleryImages[0] || "";
 
   const requireLogin = (action) => {
     if (!isAuthenticated) {
@@ -53,12 +50,12 @@ const ProductDetails = () => {
           ) : (
             <section className="mt-6 grid gap-10 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm md:grid-cols-2 md:p-8">
               <div className="flex min-h-80 items-center justify-center rounded-xl bg-gray-100 p-5">
-                <img src={selectedImage || product.thumbnail || product.images?.[0]} alt={product.title} className="max-h-[460px] w-full object-contain" />
+                <img src={activeImage || product.thumbnail || product.images?.[0]} alt={product.title} className="max-h-[460px] w-full object-contain" />
               </div>
               {galleryImages.length > 1 && (
                 <div className="mt-4 flex flex-wrap gap-3 md:col-start-1" aria-label="Product images">
                   {galleryImages.map((image, index) => (
-                    <button key={image} type="button" onClick={() => setSelectedImage(image)} aria-label={"View product image " + (index + 1)} aria-pressed={selectedImage === image} className={"h-16 w-16 overflow-hidden rounded-lg border-2 bg-white p-1 " + (selectedImage === image ? "border-blue-600" : "border-gray-200 hover:border-blue-300")}>
+                    <button key={image} type="button" onClick={() => setSelectedImage(image)} aria-label={"View product image " + (index + 1)} aria-pressed={activeImage === image} className={"h-16 w-16 overflow-hidden rounded-lg border-2 bg-white p-1 " + (selectedImage === image ? "border-blue-600" : "border-gray-200 hover:border-blue-300")}>
                       <img src={image} alt="" className="h-full w-full object-contain" />
                     </button>
                   ))}
