@@ -168,7 +168,7 @@ const DashboardPage = () => {
   };
 
  
-  const totalValue = products.reduce((sum, p) => sum + Number(p.price || 0), 0);
+  const catalogValue = products.reduce((sum, p) => sum + Number(p.price || 0), 0);
 
   // Filter and sort products
   const filteredProducts = products
@@ -296,6 +296,7 @@ const DashboardPage = () => {
       {/* Main Content */}
       <main className="pt-16 lg:pl-64 min-h-screen">
         <div className="px-4 sm:px-6 lg:px-8 py-8">
+          <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">Demo admin: product changes are stored in this browser only. DummyJSON does not provide persistent store administration, real orders, customers or sales reporting.</div>
           
           {/* Dashboard Overview */}
           {activeTab === "dashboard" && (
@@ -321,8 +322,8 @@ const DashboardPage = () => {
                     <div className="text-4xl">💰</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Revenue</div>
                   </div>
-                  <p className="text-3xl font-bold mb-1">${totalValue.toFixed(2)}</p>
-                  <p className="text-green-100 text-sm">Total Value</p>
+                  <p className="text-3xl font-bold mb-1">${catalogValue.toFixed(2)}</p>
+                  <p className="text-green-100 text-sm">Catalog value, not sales</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
@@ -330,8 +331,8 @@ const DashboardPage = () => {
                     <div className="text-4xl">🛒</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Orders</div>
                   </div>
-                  <p className="text-3xl font-bold mb-1">128</p>
-                  <p className="text-purple-100 text-sm">Total Orders</p>
+                  <p className="text-3xl font-bold mb-1">—</p>
+                  <p className="text-purple-100 text-sm">Order data unavailable</p>
                 </div>
 
                 <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
@@ -339,8 +340,8 @@ const DashboardPage = () => {
                     <div className="text-4xl">👥</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Users</div>
                   </div>
-                  <p className="text-3xl font-bold mb-1">1,249</p>
-                  <p className="text-orange-100 text-sm">Active Customers</p>
+                  <p className="text-3xl font-bold mb-1">—</p>
+                  <p className="text-orange-100 text-sm">Customer data unavailable</p>
                 </div>
               </div>
 
@@ -360,23 +361,23 @@ const DashboardPage = () => {
                       </div>
                     </button>
                     <button 
-                      onClick={() => setActiveTab("orders")}
+                      onClick={() => setActiveTab("products")}
                       className="w-full flex items-center gap-4 p-4 bg-green-50 hover:bg-green-100 rounded-lg transition-colors"
                     >
                       <div className="text-3xl">📋</div>
                       <div className="text-left">
-                        <p className="font-semibold text-gray-900">View Orders</p>
-                        <p className="text-sm text-gray-600">Manage customer orders</p>
+                        <p className="font-semibold text-gray-900">Manage Products</p>
+                        <p className="text-sm text-gray-600">Review the product catalogue</p>
                       </div>
                     </button>
                     <button 
-                      onClick={() => setActiveTab("analytics")}
+                      onClick={() => setActiveTab("products")}
                       className="w-full flex items-center gap-4 p-4 bg-purple-50 hover:bg-purple-100 rounded-lg transition-colors"
                     >
                       <div className="text-3xl">📊</div>
                       <div className="text-left">
-                        <p className="font-semibold text-gray-900">View Analytics</p>
-                        <p className="text-sm text-gray-600">Check sales performance</p>
+                        <p className="font-semibold text-gray-900">Review Catalogue</p>
+                        <p className="text-sm text-gray-600">Review product listings</p>
                       </div>
                     </button>
                   </div>
@@ -388,33 +389,28 @@ const DashboardPage = () => {
                     <div className="flex items-start gap-3 pb-4 border-b">
                       <div className="w-2 h-2 mt-2 rounded-full bg-green-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">New order received</p>
-                        <p className="text-xs text-gray-500">Order #1234 - $299.99</p>
-                        <p className="text-xs text-gray-400 mt-1">2 minutes ago</p>
+                        <p className="text-sm text-gray-900 font-medium">No live order feed connected</p>
+                        <p className="text-xs text-gray-500">Connect a commerce backend to display verified order activity.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 pb-4 border-b">
                       <div className="w-2 h-2 mt-2 rounded-full bg-blue-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">Product updated</p>
-                        <p className="text-xs text-gray-500">iPhone 14 Pro Max</p>
-                        <p className="text-xs text-gray-400 mt-1">15 minutes ago</p>
+                        <p className="text-sm text-gray-900 font-medium">Product catalogue loaded</p>
+                        <p className="text-xs text-gray-500">Data is supplied by the DummyJSON demo API.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 pb-4 border-b">
                       <div className="w-2 h-2 mt-2 rounded-full bg-purple-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">New customer registered</p>
-                        <p className="text-xs text-gray-500">John Doe</p>
-                        <p className="text-xs text-gray-400 mt-1">1 hour ago</p>
+                        
                       </div>
                     </div>
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 mt-2 rounded-full bg-orange-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">Low stock alert</p>
-                        <p className="text-xs text-gray-500">3 products running low</p>
-                        <p className="text-xs text-gray-400 mt-1">3 hours ago</p>
+                        <p className="text-sm text-gray-900 font-medium">Live inventory alerts unavailable</p>
+                        <p className="text-xs text-gray-500">Stock monitoring requires a persistent inventory service.</p>
                       </div>
                     </div>
                   </div>
@@ -439,7 +435,7 @@ const DashboardPage = () => {
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
                   <p className="text-gray-500 text-sm font-medium">Total Value</p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">${totalValue.toFixed(2)}</p>
+                  <p className="text-3xl font-bold text-gray-900 mt-1">${catalogValue.toFixed(2)}</p>
                 </div>
 
                <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-gray-500">
