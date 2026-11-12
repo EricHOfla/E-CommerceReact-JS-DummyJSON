@@ -183,7 +183,7 @@ const DashboardPage = () => {
     });
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-slate-50">
       {/* ALERT MESSAGE */}
       {message && (
         <div
@@ -195,7 +195,7 @@ const DashboardPage = () => {
           {message.text}
         </div>
       )}
-      <nav className="bg-white shadow-md fixed top-0 left-0 right-0 z-30">
+      <nav className="bg-white/95 border-b border-slate-200 shadow-sm fixed top-0 left-0 right-0 z-30 backdrop-blur">
         <div className="px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             {/* Left */}
@@ -205,7 +205,7 @@ const DashboardPage = () => {
                 className="p-2 rounded-lg hover:bg-gray-100 lg:hidden"
               >
                 <svg
-                  className="w-6 h-6 text-gray-700"
+                  className="w-6 h-6 text-slate-700"
                   fill="none"
                   stroke="currentColor"
                   viewBox="0 0 24 24"
@@ -218,17 +218,17 @@ const DashboardPage = () => {
                   />
                 </svg>
               </button>
-              <h1 className="text-2xl font-bold text-indigo-600">EROH Shop Admin</h1>
+              <h1 className="text-2xl font-bold text-slate-950">EROH Shop Admin</h1>
             </div>
 
             {/* Right */}
             <div className="flex items-center gap-4">
               <div className="flex items-center gap-3 border-l pl-4">
                 <div className="hidden sm:block text-right">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-sm font-medium text-slate-950">
                     {user?.firstName} {user?.lastName}
                   </p>
-                  <p className="text-xs text-gray-500">{user?.email}</p>
+                  <p className="text-xs text-slate-500">{user?.email}</p>
                 </div>
                 <div className="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold">
                   {user?.firstName?.charAt(0)}
@@ -242,7 +242,7 @@ const DashboardPage = () => {
 
       {/* Sidebar */}
       <aside
-        className={`fixed top-16 left-0 bottom-0 w-64 bg-white shadow-lg transform transition-transform duration-300 ease-in-out z-20 ${
+        className={`fixed top-16 left-0 bottom-0 w-64 border-r border-slate-200 bg-white shadow-sm transform transition-transform duration-300 ease-in-out z-20 ${
           sidebarOpen ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
@@ -260,8 +260,8 @@ const DashboardPage = () => {
                 }}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
                   activeTab === tab.name
-                    ? "bg-indigo-50 text-indigo-700 font-semibold"
-                    : "text-gray-700 hover:bg-gray-100"
+                    ? "bg-blue-50 text-blue-800 font-semibold"
+                    : "text-slate-700 hover:bg-slate-100"
                 }`}
               >
                 <span className="text-xl">{tab.icon}</span>
@@ -298,13 +298,13 @@ const DashboardPage = () => {
           {activeTab === "dashboard" && (
             <>
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Dashboard Overview</h1>
-                <p className="text-gray-600">Welcome back, {user?.firstName}! Here's what's happening today.</p>
+                <h1 className="text-4xl font-bold text-slate-950 mb-2">Dashboard Overview</h1>
+                <p className="text-slate-600">Welcome back, {user?.firstName}! Here's what's happening today.</p>
               </div>
 
               {/* Stats Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
-                <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="bg-slate-900 rounded-xl shadow-lg p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl">📦</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Products</div>
@@ -313,7 +313,7 @@ const DashboardPage = () => {
                   <p className="text-blue-100 text-sm">Total Products</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="bg-blue-700 rounded-xl shadow-lg p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl">💰</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Catalogue</div>
@@ -322,7 +322,7 @@ const DashboardPage = () => {
                   <p className="text-green-100 text-sm">Catalog value, not sales</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-purple-500 to-purple-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="bg-slate-700 rounded-xl shadow-lg p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl">🛒</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Orders</div>
@@ -331,7 +331,7 @@ const DashboardPage = () => {
                   <p className="text-purple-100 text-sm">Order data unavailable</p>
                 </div>
 
-                <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl shadow-lg p-6 text-white">
+                <div className="bg-slate-600 rounded-xl shadow-lg p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl">👥</div>
                     <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Users</div>
@@ -344,7 +344,7 @@ const DashboardPage = () => {
               {/* Quick Actions & Recent Activity */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Quick Actions</h2>
+                  <h2 className="text-2xl font-bold text-slate-950 mb-4">Quick Actions</h2>
                   <div className="space-y-3">
                     <button 
                       onClick={() => setActiveTab("products")}
@@ -352,8 +352,8 @@ const DashboardPage = () => {
                     >
                       <div className="text-3xl">➕</div>
                       <div className="text-left">
-                        <p className="font-semibold text-gray-900">Add New Product</p>
-                        <p className="text-sm text-gray-600">Create a new product listing</p>
+                        <p className="font-semibold text-slate-950">Add New Product</p>
+                        <p className="text-sm text-slate-600">Create a new product listing</p>
                       </div>
                     </button>
                     <button 
@@ -362,8 +362,8 @@ const DashboardPage = () => {
                     >
                       <div className="text-3xl">📋</div>
                       <div className="text-left">
-                        <p className="font-semibold text-gray-900">Manage Products</p>
-                        <p className="text-sm text-gray-600">Review the product catalogue</p>
+                        <p className="font-semibold text-slate-950">Manage Products</p>
+                        <p className="text-sm text-slate-600">Review the product catalogue</p>
                       </div>
                     </button>
                     <button 
@@ -372,28 +372,28 @@ const DashboardPage = () => {
                     >
                       <div className="text-3xl">📊</div>
                       <div className="text-left">
-                        <p className="font-semibold text-gray-900">Review Catalogue</p>
-                        <p className="text-sm text-gray-600">Review product listings</p>
+                        <p className="font-semibold text-slate-950">Review Catalogue</p>
+                        <p className="text-sm text-slate-600">Review product listings</p>
                       </div>
                     </button>
                   </div>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-md p-6">
-                  <h2 className="text-2xl font-bold text-gray-900 mb-4">Recent Activity</h2>
+                  <h2 className="text-2xl font-bold text-slate-950 mb-4">Recent Activity</h2>
                   <div className="space-y-4">
                     <div className="flex items-start gap-3 pb-4 border-b">
                       <div className="w-2 h-2 mt-2 rounded-full bg-green-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">No live order feed connected</p>
-                        <p className="text-xs text-gray-500">Connect a commerce backend to display verified order activity.</p>
+                        <p className="text-sm text-slate-950 font-medium">No live order feed connected</p>
+                        <p className="text-xs text-slate-500">Connect a commerce backend to display verified order activity.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 pb-4 border-b">
                       <div className="w-2 h-2 mt-2 rounded-full bg-blue-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">Product catalogue loaded</p>
-                        <p className="text-xs text-gray-500">Data is supplied by the DummyJSON demo API.</p>
+                        <p className="text-sm text-slate-950 font-medium">Product catalogue loaded</p>
+                        <p className="text-xs text-slate-500">Data is supplied by the DummyJSON demo API.</p>
                       </div>
                     </div>
                     <div className="flex items-start gap-3 pb-4 border-b">
@@ -405,8 +405,8 @@ const DashboardPage = () => {
                     <div className="flex items-start gap-3">
                       <div className="w-2 h-2 mt-2 rounded-full bg-orange-500"></div>
                       <div className="flex-1">
-                        <p className="text-sm text-gray-900 font-medium">Live inventory alerts unavailable</p>
-                        <p className="text-xs text-gray-500">Stock monitoring requires a persistent inventory service.</p>
+                        <p className="text-sm text-slate-950 font-medium">Live inventory alerts unavailable</p>
+                        <p className="text-xs text-slate-500">Stock monitoring requires a persistent inventory service.</p>
                       </div>
                     </div>
                   </div>
@@ -419,24 +419,24 @@ const DashboardPage = () => {
             <>
               {/* Header */}
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Product Management</h1>
-                <p className="text-gray-600">Manage your products and inventory</p>
+                <h1 className="text-4xl font-bold text-slate-950 mb-2">Product Management</h1>
+                <p className="text-slate-600">Manage your products and inventory</p>
               </div>
 
               {/* Stats */}
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                 <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-indigo-500">
-                  <p className="text-gray-500 text-sm font-medium">Total Products</p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">{products.length}</p>
+                  <p className="text-slate-500 text-sm font-medium">Total Products</p>
+                  <p className="text-3xl font-bold text-slate-950 mt-1">{products.length}</p>
                 </div>
                 <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-green-500">
-                  <p className="text-gray-500 text-sm font-medium">Total Value</p>
-                  <p className="text-3xl font-bold text-gray-900 mt-1">${catalogValue.toFixed(2)}</p>
+                  <p className="text-slate-500 text-sm font-medium">Total Value</p>
+                  <p className="text-3xl font-bold text-slate-950 mt-1">${catalogValue.toFixed(2)}</p>
                 </div>
 
                <div className="bg-white rounded-xl shadow-md p-6 border-l-4 border-gray-500">
-                      <p className="text-gray-500 text-sm font-medium">Average Price</p>
-                      <p className="text-3xl font-bold text-gray-900 mt-1">
+                      <p className="text-slate-500 text-sm font-medium">Average Price</p>
+                      <p className="text-3xl font-bold text-slate-950 mt-1">
                         ${products.length > 0 ? (products.reduce((sum, p) => sum + (parseFloat(p.price) || 0), 0) / products.length).toFixed(2) : '0.00'}
                       </p>
                     </div>
@@ -445,7 +445,7 @@ const DashboardPage = () => {
               {/* Add Product Form */}
               <div className="bg-white rounded-xl shadow-md p-6 mb-8">
                 <div className="flex items-center justify-between mb-4">
-                  <h2 className="text-2xl font-bold text-gray-900">Add New Product</h2>
+                  <h2 className="text-2xl font-bold text-slate-950">Add New Product</h2>
                   <button
                     onClick={() => setShowForm(!showForm)}
                     className="bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg flex items-center gap-2"
@@ -461,14 +461,14 @@ const DashboardPage = () => {
                         placeholder="Product title"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         required
                       />
                       <input
                         placeholder="Brand"
                         value={brand}
                         onChange={(e) => setBrand(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                     </div>
 
@@ -479,7 +479,7 @@ const DashboardPage = () => {
                         step="0.01"
                         value={price}
                         onChange={(e) => setPrice(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         required
                       />
                       <input
@@ -487,7 +487,7 @@ const DashboardPage = () => {
                         type="number"
                         value={stock}
                         onChange={(e) => setStock(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                       <input
                         placeholder="Discount %"
@@ -497,7 +497,7 @@ const DashboardPage = () => {
                         max="100"
                         value={discount}
                         onChange={(e) => setDiscount(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                     </div>
 
@@ -506,7 +506,7 @@ const DashboardPage = () => {
                         placeholder="Category"
                         value={category}
                         onChange={(e) => setCategory(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                       <input
                         placeholder="Rating (0-5)"
@@ -516,7 +516,7 @@ const DashboardPage = () => {
                         max="5"
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
-                        className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                     </div>
 
@@ -524,7 +524,7 @@ const DashboardPage = () => {
                       placeholder="Image URL"
                       value={image}
                       onChange={(e) => setImage(e.target.value)}
-                      className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                      className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                     />
 
                     <textarea
@@ -532,7 +532,7 @@ const DashboardPage = () => {
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       rows="4"
-                      className="border border-gray-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
+                      className="border border-slate-300 p-3 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 resize-none"
                     ></textarea>
 
                     <button
@@ -547,21 +547,21 @@ const DashboardPage = () => {
 
               {/* Product Table */}
               <div className="bg-white rounded-xl shadow-md overflow-hidden">
-                <div className="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                <div className="px-6 py-4 bg-slate-50 border-b border-slate-200">
                   <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                    <h2 className="text-2xl font-bold text-gray-900">Product Inventory</h2>
+                    <h2 className="text-2xl font-bold text-slate-950">Product Inventory</h2>
                     <div className="flex gap-3">
                       <input
                         type="text"
                         placeholder="Search products..."
                         value={searchQuery}
                         onChange={(e) => setSearchQuery(e.target.value)}
-                        className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       />
                       <select
                         value={sortBy}
                         onChange={(e) => setSortBy(e.target.value)}
-                        className="border border-gray-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        className="border border-slate-300 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
                       >
                         <option value="title">Sort by Name</option>
                         <option value="price-asc">Price: Low to High</option>
@@ -572,36 +572,36 @@ const DashboardPage = () => {
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-gray-50 border-b border-gray-200">
+                    <thead className="bg-slate-50 border-b border-slate-200">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Image</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Product</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Brand</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Category</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Price</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Stock</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Discount</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rating</th>
-                        <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Image</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Product</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Brand</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Category</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Price</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Stock</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Discount</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Rating</th>
+                        <th className="px-6 py-3 text-right text-xs font-medium text-slate-500 uppercase tracking-wider">Actions</th>
                       </tr>
                     </thead>
                     <tbody className="bg-white divide-y divide-gray-200">
                       {filteredProducts.length === 0 ? (
                         <tr>
-                          <td colSpan="9" className="px-6 py-12 text-center text-gray-500">
+                          <td colSpan="9" className="px-6 py-12 text-center text-slate-500">
                             {searchQuery ? "No products found matching your search" : "No products yet"}
                           </td>
                         </tr>
                       ) : (
                         filteredProducts.map((product) => (
-                          <tr key={product.id} className="hover:bg-gray-50">
+                          <tr key={product.id} className="hover:bg-slate-50">
                             <td className="px-6 py-4">
                               {editingId === product.id ? (
                                 <input
                                   value={editImage}
                                   onChange={(e) => setEditImage(e.target.value)}
                                   placeholder="Image URL"
-                                  className="border border-gray-300 p-2 rounded-lg w-full"
+                                  className="border border-slate-300 p-2 rounded-lg w-full"
                                 />
                               ) : (
                                 <img
@@ -618,21 +618,21 @@ const DashboardPage = () => {
                                     value={editTitle}
                                     onChange={(e) => setEditTitle(e.target.value)}
                                     placeholder="Title"
-                                    className="border border-gray-300 p-2 rounded-lg w-full"
+                                    className="border border-slate-300 p-2 rounded-lg w-full"
                                   />
                                   <textarea
                                     value={editDescription}
                                     onChange={(e) => setEditDescription(e.target.value)}
                                     placeholder="Description"
                                     rows="2"
-                                    className="border border-gray-300 p-2 rounded-lg w-full text-sm resize-none"
+                                    className="border border-slate-300 p-2 rounded-lg w-full text-sm resize-none"
                                   ></textarea>
                                 </div>
                               ) : (
                                 <div>
-                                  <p className="text-gray-900 font-medium">{product.title}</p>
+                                  <p className="text-slate-950 font-medium">{product.title}</p>
                                   {product.description && (
-                                    <p className="text-xs text-gray-500 mt-1 line-clamp-2">{product.description}</p>
+                                    <p className="text-xs text-slate-500 mt-1 line-clamp-2">{product.description}</p>
                                   )}
                                 </div>
                               )}
@@ -643,10 +643,10 @@ const DashboardPage = () => {
                                   value={editBrand}
                                   onChange={(e) => setEditBrand(e.target.value)}
                                   placeholder="Brand"
-                                  className="border border-gray-300 p-2 rounded-lg w-full"
+                                  className="border border-slate-300 p-2 rounded-lg w-full"
                                 />
                               ) : (
-                                <span className="text-gray-700">{product.brand || "-"}</span>
+                                <span className="text-slate-700">{product.brand || "-"}</span>
                               )}
                             </td>
                             <td className="px-6 py-4">
@@ -655,10 +655,10 @@ const DashboardPage = () => {
                                   value={editCategory}
                                   onChange={(e) => setEditCategory(e.target.value)}
                                   placeholder="Category"
-                                  className="border border-gray-300 p-2 rounded-lg w-full"
+                                  className="border border-slate-300 p-2 rounded-lg w-full"
                                 />
                               ) : (
-                                <span className="text-gray-700 capitalize">{product.category || "-"}</span>
+                                <span className="text-slate-700 capitalize">{product.category || "-"}</span>
                               )}
                             </td>
                             <td className="px-6 py-4">
@@ -668,10 +668,10 @@ const DashboardPage = () => {
                                   step="0.01"
                                   value={editPrice}
                                   onChange={(e) => setEditPrice(e.target.value)}
-                                  className="border border-gray-300 p-2 rounded-lg w-24"
+                                  className="border border-slate-300 p-2 rounded-lg w-24"
                                 />
                               ) : (
-                                <span className="text-gray-900 font-semibold">${parseFloat(product.price || 0).toFixed(2)}</span>
+                                <span className="text-slate-950 font-semibold">${parseFloat(product.price || 0).toFixed(2)}</span>
                               )}
                             </td>
                             <td className="px-6 py-4">
@@ -681,7 +681,7 @@ const DashboardPage = () => {
                                   value={editStock}
                                   onChange={(e) => setEditStock(e.target.value)}
                                   placeholder="Stock"
-                                  className="border border-gray-300 p-2 rounded-lg w-20"
+                                  className="border border-slate-300 p-2 rounded-lg w-20"
                                 />
                               ) : (
                                 <span className={`px-2 py-1 rounded-full text-xs font-medium ${
@@ -703,10 +703,10 @@ const DashboardPage = () => {
                                   value={editDiscount}
                                   onChange={(e) => setEditDiscount(e.target.value)}
                                   placeholder="Discount"
-                                  className="border border-gray-300 p-2 rounded-lg w-20"
+                                  className="border border-slate-300 p-2 rounded-lg w-20"
                                 />
                               ) : (
-                                <span className="text-gray-700">
+                                <span className="text-slate-700">
                                   {product.discountPercentage ? `${parseFloat(product.discountPercentage).toFixed(1)}%` : "-"}
                                 </span>
                               )}
@@ -721,12 +721,12 @@ const DashboardPage = () => {
                                   value={editRating}
                                   onChange={(e) => setEditRating(e.target.value)}
                                   placeholder="Rating"
-                                  className="border border-gray-300 p-2 rounded-lg w-20"
+                                  className="border border-slate-300 p-2 rounded-lg w-20"
                                 />
                               ) : (
                                 <div className="flex items-center gap-1">
                                   <span className="text-yellow-500">★</span>
-                                  <span className="text-gray-700">{product.rating ? parseFloat(product.rating).toFixed(1) : "-"}</span>
+                                  <span className="text-slate-700">{product.rating ? parseFloat(product.rating).toFixed(1) : "-"}</span>
                                 </div>
                               )}
                             </td>
@@ -742,7 +742,7 @@ const DashboardPage = () => {
                                     </button>
                                     <button
                                       onClick={cancelEdit}
-                                      className="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
+                                      className="bg-slate-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg"
                                     >
                                       Cancel
                                     </button>
@@ -779,50 +779,50 @@ const DashboardPage = () => {
           {activeTab === "orders" && (
             <>
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Orders Management</h1>
-                <p className="text-gray-600">Track and manage customer orders</p>
+                <h1 className="text-4xl font-bold text-slate-950 mb-2">Orders Management</h1>
+                <p className="text-slate-600">Track and manage customer orders</p>
               </div>
 
               <div className="bg-white rounded-xl shadow-md overflow-hidden">
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-gray-50 border-b">
+                    <thead className="bg-slate-50 border-b">
                       <tr>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Order ID</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Amount</th>
-                        <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Status</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Order ID</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Customer</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Date</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Amount</th>
+                        <th className="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase">Status</th>
                       </tr>
                     </thead>
                     <tbody className="divide-y divide-gray-200">
-                      <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">#1234</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">John Doe</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">Jan 14, 2026</td>
-                        <td className="px-6 py-4 text-sm font-semibold text-gray-900">$299.99</td>
+                      <tr className="hover:bg-slate-50">
+                        <td className="px-6 py-4 text-sm font-medium text-slate-950">#1234</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">John Doe</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">Jan 14, 2026</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-slate-950">$299.99</td>
                         <td className="px-6 py-4">
                           <span className="px-3 py-1 rounded-full text-xs font-medium bg-green-100 text-green-800">
                             Completed
                           </span>
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">#1233</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">Jane Smith</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">Jan 13, 2026</td>
-                        <td className="px-6 py-4 text-sm font-semibold text-gray-900">$149.50</td>
+                      <tr className="hover:bg-slate-50">
+                        <td className="px-6 py-4 text-sm font-medium text-slate-950">#1233</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">Jane Smith</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">Jan 13, 2026</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-slate-950">$149.50</td>
                         <td className="px-6 py-4">
                           <span className="px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
                             Processing
                           </span>
                         </td>
                       </tr>
-                      <tr className="hover:bg-gray-50">
-                        <td className="px-6 py-4 text-sm font-medium text-gray-900">#1232</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">Bob Johnson</td>
-                        <td className="px-6 py-4 text-sm text-gray-600">Jan 13, 2026</td>
-                        <td className="px-6 py-4 text-sm font-semibold text-gray-900">$599.00</td>
+                      <tr className="hover:bg-slate-50">
+                        <td className="px-6 py-4 text-sm font-medium text-slate-950">#1232</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">Bob Johnson</td>
+                        <td className="px-6 py-4 text-sm text-slate-600">Jan 13, 2026</td>
+                        <td className="px-6 py-4 text-sm font-semibold text-slate-950">$599.00</td>
                         <td className="px-6 py-4">
                           <span className="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
                             Shipped
@@ -840,8 +840,8 @@ const DashboardPage = () => {
           {activeTab === "customers" && (
             <>
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Customers</h1>
-                <p className="text-gray-600">Manage your customer base</p>
+                <h1 className="text-4xl font-bold text-slate-950 mb-2">Customers</h1>
+                <p className="text-slate-600">Manage your customer base</p>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -851,14 +851,14 @@ const DashboardPage = () => {
                       JD
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">John Doe</h3>
-                      <p className="text-sm text-gray-500">john.doe@email.com</p>
+                      <h3 className="text-lg font-semibold text-slate-950">John Doe</h3>
+                      <p className="text-sm text-slate-500">john.doe@email.com</p>
                     </div>
                   </div>
                   <div className="space-y-2 text-sm">
-                    <p className="text-gray-600"><span className="font-medium">Orders:</span> 12</p>
-                    <p className="text-gray-600"><span className="font-medium">Total Spent:</span> $2,450</p>
-                    <p className="text-gray-600"><span className="font-medium">Joined:</span> Dec 2025</p>
+                    <p className="text-slate-600"><span className="font-medium">Orders:</span> 12</p>
+                    <p className="text-slate-600"><span className="font-medium">Total Spent:</span> $2,450</p>
+                    <p className="text-slate-600"><span className="font-medium">Joined:</span> Dec 2025</p>
                   </div>
                 </div>
 
@@ -868,14 +868,14 @@ const DashboardPage = () => {
                       JS
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Jane Smith</h3>
-                      <p className="text-sm text-gray-500">jane.smith@email.com</p>
+                      <h3 className="text-lg font-semibold text-slate-950">Jane Smith</h3>
+                      <p className="text-sm text-slate-500">jane.smith@email.com</p>
                     </div>
                   </div>
                   <div className="space-y-2 text-sm">
-                    <p className="text-gray-600"><span className="font-medium">Orders:</span> 8</p>
-                    <p className="text-gray-600"><span className="font-medium">Total Spent:</span> $1,890</p>
-                    <p className="text-gray-600"><span className="font-medium">Joined:</span> Nov 2025</p>
+                    <p className="text-slate-600"><span className="font-medium">Orders:</span> 8</p>
+                    <p className="text-slate-600"><span className="font-medium">Total Spent:</span> $1,890</p>
+                    <p className="text-slate-600"><span className="font-medium">Joined:</span> Nov 2025</p>
                   </div>
                 </div>
 
@@ -885,14 +885,14 @@ const DashboardPage = () => {
                       BJ
                     </div>
                     <div>
-                      <h3 className="text-lg font-semibold text-gray-900">Bob Johnson</h3>
-                      <p className="text-sm text-gray-500">bob.j@email.com</p>
+                      <h3 className="text-lg font-semibold text-slate-950">Bob Johnson</h3>
+                      <p className="text-sm text-slate-500">bob.j@email.com</p>
                     </div>
                   </div>
                   <div className="space-y-2 text-sm">
-                    <p className="text-gray-600"><span className="font-medium">Orders:</span> 15</p>
-                    <p className="text-gray-600"><span className="font-medium">Total Spent:</span> $3,200</p>
-                    <p className="text-gray-600"><span className="font-medium">Joined:</span> Oct 2025</p>
+                    <p className="text-slate-600"><span className="font-medium">Orders:</span> 15</p>
+                    <p className="text-slate-600"><span className="font-medium">Total Spent:</span> $3,200</p>
+                    <p className="text-slate-600"><span className="font-medium">Joined:</span> Oct 2025</p>
                   </div>
                 </div>
               </div>
@@ -903,38 +903,38 @@ const DashboardPage = () => {
           {activeTab === "analytics" && (
             <>
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Analytics</h1>
-                <p className="text-gray-600">Track your store performance</p>
+                <h1 className="text-4xl font-bold text-slate-950 mb-2">Analytics</h1>
+                <p className="text-slate-600">Track your store performance</p>
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
                 <div className="bg-white rounded-xl shadow-md p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Sales Overview</h3>
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">Sales Overview</h3>
                   <div className="space-y-4">
                     <div className="flex justify-between items-center pb-3 border-b">
-                      <span className="text-gray-600">Today</span>
-                      <span className="text-xl font-bold text-gray-900">$1,234</span>
+                      <span className="text-slate-600">Today</span>
+                      <span className="text-xl font-bold text-slate-950">$1,234</span>
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
-                      <span className="text-gray-600">This Week</span>
-                      <span className="text-xl font-bold text-gray-900">$8,456</span>
+                      <span className="text-slate-600">This Week</span>
+                      <span className="text-xl font-bold text-slate-950">$8,456</span>
                     </div>
                     <div className="flex justify-between items-center pb-3 border-b">
-                      <span className="text-gray-600">This Month</span>
-                      <span className="text-xl font-bold text-gray-900">$34,290</span>
+                      <span className="text-slate-600">This Month</span>
+                      <span className="text-xl font-bold text-slate-950">$34,290</span>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-gray-600">This Year</span>
-                      <span className="text-xl font-bold text-gray-900">$156,780</span>
+                      <span className="text-slate-600">This Year</span>
+                      <span className="text-xl font-bold text-slate-950">$156,780</span>
                     </div>
                   </div>
                 </div>
 
                 <div className="bg-white rounded-xl shadow-md p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Top Products</h3>
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">Top Products</h3>
                   <div className="space-y-3">
                     {products.slice(0, 5).map((product, index) => (
-                      <div key={product.id} className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg">
+                      <div key={product.id} className="flex items-center gap-3 p-3 bg-slate-50 rounded-lg">
                         <span className="text-lg font-bold text-gray-400">#{index + 1}</span>
                         <img 
                           src={product.thumbnail || "https://via.placeholder.com/40"} 
@@ -942,10 +942,10 @@ const DashboardPage = () => {
                           className="w-10 h-10 rounded object-cover"
                         />
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 truncate">{product.title}</p>
-                          <p className="text-xs text-gray-500">42 sales</p>
+                          <p className="text-sm font-medium text-slate-950 truncate">{product.title}</p>
+                          <p className="text-xs text-slate-500">42 sales</p>
                         </div>
-                        <span className="text-sm font-semibold text-gray-900">${product.price}</span>
+                        <span className="text-sm font-semibold text-slate-950">${product.price}</span>
                       </div>
                     ))}
                   </div>
@@ -958,33 +958,33 @@ const DashboardPage = () => {
           {activeTab === "settings" && (
             <>
               <div className="mb-8">
-                <h1 className="text-4xl font-bold text-gray-900 mb-2">Settings</h1>
-                <p className="text-gray-600">Manage your store settings</p>
+                <h1 className="text-4xl font-bold text-slate-950 mb-2">Settings</h1>
+                <p className="text-slate-600">Manage your store settings</p>
               </div>
 
               <div className="space-y-6">
                 <div className="bg-white rounded-xl shadow-md p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Store Information</h3>
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">Store Information</h3>
                   <div className="space-y-4">
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Store Name</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">Store Name</label>
                       <input 
                         type="text" 
                         defaultValue="EROH Shop" 
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        className="w-full border border-slate-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Store Email</label>
+                      <label className="block text-sm font-medium text-slate-700 mb-2">Store Email</label>
                       <input 
                         type="email" 
                         defaultValue="contact@erohshop.com" 
-                        className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                        className="w-full border border-slate-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">Currency</label>
-                      <select className="w-full border border-gray-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                      <label className="block text-sm font-medium text-slate-700 mb-2">Currency</label>
+                      <select className="w-full border border-slate-300 rounded-lg px-4 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none">
                         <option>USD - US Dollar</option>
                         <option>EUR - Euro</option>
                         <option>GBP - British Pound</option>
@@ -997,19 +997,19 @@ const DashboardPage = () => {
                 </div>
 
                 <div className="bg-white rounded-xl shadow-md p-6">
-                  <h3 className="text-xl font-semibold text-gray-900 mb-4">Notifications</h3>
+                  <h3 className="text-xl font-semibold text-slate-950 mb-4">Notifications</h3>
                   <div className="space-y-3">
                     <label className="flex items-center gap-3">
                       <input type="checkbox" defaultChecked className="w-5 h-5 text-indigo-600 rounded" />
-                      <span className="text-gray-700">Email notifications for new orders</span>
+                      <span className="text-slate-700">Email notifications for new orders</span>
                     </label>
                     <label className="flex items-center gap-3">
                       <input type="checkbox" defaultChecked className="w-5 h-5 text-indigo-600 rounded" />
-                      <span className="text-gray-700">Low stock alerts</span>
+                      <span className="text-slate-700">Low stock alerts</span>
                     </label>
                     <label className="flex items-center gap-3">
                       <input type="checkbox" className="w-5 h-5 text-indigo-600 rounded" />
-                      <span className="text-gray-700">Marketing updates</span>
+                      <span className="text-slate-700">Marketing updates</span>
                     </label>
                   </div>
                 </div>
