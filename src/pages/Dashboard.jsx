@@ -251,10 +251,6 @@ const DashboardPage = () => {
             {[
               { name: "dashboard", label: "Dashboard", icon: "📊" },
               { name: "products", label: "Products", icon: "📦" },
-              { name: "orders", label: "Orders", icon: "🛒" },
-              { name: "customers", label: "Customers", icon: "👥" },
-              { name: "analytics", label: "Analytics", icon: "📈" },
-              { name: "settings", label: "Settings", icon: "⚙️" },
             ].map((tab) => (
               <button
                 key={tab.name}
@@ -296,7 +292,7 @@ const DashboardPage = () => {
       {/* Main Content */}
       <main className="pt-16 lg:pl-64 min-h-screen">
         <div className="px-4 sm:px-6 lg:px-8 py-8">
-          <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">Demo admin: product changes are stored in this browser only. DummyJSON does not provide persistent store administration, real orders, customers or sales reporting.</div>
+          <div className="mb-6 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">Demo management screen: product changes are stored in this browser only. DummyJSON does not provide persistent store administration, real orders, customers, sales reporting or admin-role security.</div>
           
           {/* Dashboard Overview */}
           {activeTab === "dashboard" && (
@@ -320,7 +316,7 @@ const DashboardPage = () => {
                 <div className="bg-gradient-to-br from-green-500 to-green-600 rounded-xl shadow-lg p-6 text-white">
                   <div className="flex items-center justify-between mb-4">
                     <div className="text-4xl">💰</div>
-                    <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Revenue</div>
+                    <div className="bg-white bg-opacity-30 rounded-lg px-3 py-1 text-sm">Catalogue</div>
                   </div>
                   <p className="text-3xl font-bold mb-1">${catalogValue.toFixed(2)}</p>
                   <p className="text-green-100 text-sm">Catalog value, not sales</p>
