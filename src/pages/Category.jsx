@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useNavigate, useParams, useSearchParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useProducts } from "../context/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
 
 const Category = () => {
   const { name } = useParams();
-  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { products, loading, error } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -60,10 +59,10 @@ const Category = () => {
     return (
       <>
         <Navbar />
-        <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
           <div className="text-center">
             <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-600 mb-4"></div>
-            <p className="text-slate-600 text-lg font-medium">Loading products...</p>
+            <p className="text-gray-600 text-lg font-medium">Loading products...</p>
           </div>
         </div>
       </>
@@ -74,10 +73,10 @@ const Category = () => {
     <>
       <Navbar />
 
-      <div className="min-h-screen bg-slate-50">
+      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
         {error && <div role="alert" className="mx-auto max-w-7xl px-4 pt-6"><div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div></div>}
         {/* Modern Hero Section */}
-        <div className="relative bg-white border-b border-slate-200 overflow-hidden">
+        <div className="relative bg-white border-b border-gray-200 overflow-hidden">
           {/* Background Pattern */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 opacity-60"></div>
           <div className="absolute inset-0" style={{
@@ -87,15 +86,15 @@ const Category = () => {
           <div className="relative max-w-7xl mx-auto px-6 py-12">
             {/* Breadcrumb */}
             <nav className="flex items-center space-x-2 text-sm mb-6">
-              <a href="/" className="text-slate-500 hover:text-slate-950 transition-colors">Home</a>
+              <a href="/" className="text-gray-500 hover:text-gray-900 transition-colors">Home</a>
               <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-              <a href="/products" className="text-slate-500 hover:text-slate-950 transition-colors">Products</a>
+              <a href="/products" className="text-gray-500 hover:text-gray-900 transition-colors">Products</a>
               <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
-              <span className="text-slate-950 font-medium capitalize">
+              <span className="text-gray-900 font-medium capitalize">
                 {name ? name.replace(/-/g, ' ') : "All Products"}
               </span>
             </nav>
@@ -110,10 +109,10 @@ const Category = () => {
                     </svg>
                   </div>
                   <div>
-                    <h1 className="text-4xl md:text-5xl font-extrabold text-slate-950 capitalize tracking-tight">
+                    <h1 className="text-4xl md:text-5xl font-extrabold text-gray-900 capitalize tracking-tight">
                       {name ? name.replace(/-/g, ' ') : "All Products"}
                     </h1>
-                    <p className="text-slate-600 mt-2 text-lg">
+                    <p className="text-gray-600 mt-2 text-lg">
                       Explore our curated collection of premium products
                     </p>
                   </div>
@@ -122,7 +121,7 @@ const Category = () => {
 
               {/* Stats Cards */}
               <div className="flex gap-4">
-                <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm px-6 py-4 border border-gray-100">
+                <div className="bg-white rounded-xl shadow-md px-6 py-4 border border-gray-100">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
                       <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -130,13 +129,13 @@ const Category = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-3xl font-bold text-slate-950">{filteredProducts.length}</p>
-                      <p className="text-sm text-slate-500">Products</p>
+                      <p className="text-3xl font-bold text-gray-900">{filteredProducts.length}</p>
+                      <p className="text-sm text-gray-500">Products</p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm px-6 py-4 border border-gray-100">
+                <div className="bg-white rounded-xl shadow-md px-6 py-4 border border-gray-100">
                   <div className="flex items-center gap-3">
                     <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
                       <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -144,12 +143,12 @@ const Category = () => {
                       </svg>
                     </div>
                     <div>
-                      <p className="text-3xl font-bold text-slate-950">
+                      <p className="text-3xl font-bold text-gray-900">
                         {filteredProducts.length > 0 
                           ? (filteredProducts.reduce((sum, p) => sum + (p.rating || 0), 0) / filteredProducts.length).toFixed(1)
                           : '0.0'}
                       </p>
-                      <p className="text-sm text-slate-500">Avg Rating</p>
+                      <p className="text-sm text-gray-500">Avg Rating</p>
                     </div>
                   </div>
                 </div>
@@ -160,12 +159,12 @@ const Category = () => {
 
         {/* Filters & Sort Bar */}
         <div className="max-w-7xl mx-auto px-6 py-8">
-          <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 mb-8">
+          <div className="bg-white rounded-xl shadow-md p-6 mb-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               
               {/* Search Bar */}
               <div className="lg:col-span-2">
-                <label className="block text-sm font-medium text-slate-700 mb-2">Search Products</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Search Products</label>
                 <div className="relative">
                   <input
                     type="text"
@@ -182,7 +181,7 @@ const Category = () => {
 
               {/* Sort Dropdown */}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Sort By</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Sort By</label>
                 <select
                   value={sortBy}
                   onChange={(e) => setSortBy(e.target.value)}
@@ -199,7 +198,7 @@ const Category = () => {
 
               {/* Price Range Filter */}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">Price Range</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
                 <select
                   value={priceRange}
                   onChange={(e) => setPriceRange(e.target.value)}
@@ -215,14 +214,14 @@ const Category = () => {
 
               {/* View Mode Toggle */}
               <div>
-                <label className="block text-sm font-medium text-slate-700 mb-2">View</label>
+                <label className="block text-sm font-medium text-gray-700 mb-2">View</label>
                 <div className="flex gap-2">
                   <button
                     onClick={() => setViewMode("grid")}
                     className={`flex-1 px-4 py-2 rounded-lg transition-all ${
                       viewMode === "grid"
                         ? "bg-blue-600 text-white shadow-md"
-                        : "bg-slate-100 text-slate-700 hover:bg-gray-200"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
                     <svg className="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -234,7 +233,7 @@ const Category = () => {
                     className={`flex-1 px-4 py-2 rounded-lg transition-all ${
                       viewMode === "list"
                         ? "bg-blue-600 text-white shadow-md"
-                        : "bg-slate-100 text-slate-700 hover:bg-gray-200"
+                        : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                     }`}
                   >
                     <svg className="w-5 h-5 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,8 +296,8 @@ const Category = () => {
 
           {/* Results Summary */}
           <div className="flex items-center justify-between mb-6">
-            <p className="text-slate-600">
-              Showing <span className="font-semibold text-slate-950">{filteredProducts.length}</span> {filteredProducts.length === 1 ? 'result' : 'results'}
+            <p className="text-gray-600">
+              Showing <span className="font-semibold text-gray-900">{filteredProducts.length}</span> {filteredProducts.length === 1 ? 'result' : 'results'}
             </p>
           </div>
         </div>
@@ -312,8 +311,8 @@ const Category = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
                 </svg>
               </div>
-              <h3 className="text-2xl font-semibold text-slate-700 mb-2">No Products Found</h3>
-              <p className="text-slate-500 text-lg mb-4">
+              <h3 className="text-2xl font-semibold text-gray-700 mb-2">No Products Found</h3>
+              <p className="text-gray-500 text-lg mb-4">
                 {searchQuery || priceRange !== "all" 
                   ? "No products match your filters. Try adjusting your search criteria."
                   : "We couldn't find any products in this category."}
@@ -354,30 +353,30 @@ const Category = () => {
                   {viewMode === "grid" ? (
                     <ProductCard product={product} />
                   ) : (
-                    <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden flex gap-6 p-4 hover:shadow-xl transition-shadow">
+                    <div className="bg-white rounded-xl shadow-md overflow-hidden flex gap-6 p-4 hover:shadow-xl transition-shadow">
                       <img
                         src={product.thumbnail || product.images?.[0] || "https://via.placeholder.com/150"}
                         alt={product.title}
                         className="w-32 h-32 object-cover rounded-lg flex-shrink-0"
                       />
                       <div className="flex-1 min-w-0">
-                        <h3 className="text-xl font-bold text-slate-950 mb-2 truncate">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 truncate">
                           {product.title}
                         </h3>
-                        <p className="text-slate-600 text-sm mb-3 line-clamp-2">
+                        <p className="text-gray-600 text-sm mb-3 line-clamp-2">
                           {product.description || "No description available"}
                         </p>
                         <div className="flex items-center gap-2 mb-3">
                           {product.rating && (
                             <div className="flex items-center">
                               <span className="text-yellow-500 text-lg">★</span>
-                              <span className="text-sm font-medium text-slate-700 ml-1">
+                              <span className="text-sm font-medium text-gray-700 ml-1">
                                 {product.rating.toFixed(1)}
                               </span>
                             </div>
                           )}
                           {product.brand && (
-                            <span className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+                            <span className="text-xs text-gray-500 bg-gray-100 px-2 py-1 rounded">
                               {product.brand}
                             </span>
                           )}
@@ -393,7 +392,7 @@ const Category = () => {
                               </span>
                             )}
                           </div>
-                          <button onClick={() => navigate(`/product/${product.id}`)} className="rounded-xl bg-slate-950 px-6 py-2 font-semibold text-white transition-colors hover:bg-blue-700">
+                          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
                             View Details
                           </button>
                         </div>
