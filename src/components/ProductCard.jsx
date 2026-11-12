@@ -94,9 +94,10 @@ const ProductCard = ({ product }) => {
         <button
           onClick={handleAddToWishlist}
           type="button"
-          aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+          aria-label={isInWishlist ? "Already in wishlist" : "Add to wishlist"}
           aria-pressed={isInWishlist}
-          className={`absolute top-3 right-3 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all ${
+          disabled={isInWishlist}
+          className={`absolute top-3 right-3 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all disabled:cursor-default ${
             isInWishlist 
               ? 'bg-pink-500 text-white' 
               : 'bg-white text-gray-600 hover:bg-pink-50 hover:text-pink-500'
