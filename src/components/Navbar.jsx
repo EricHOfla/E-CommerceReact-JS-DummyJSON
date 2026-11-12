@@ -59,9 +59,9 @@ const Navbar = () => {
   const totalCartItems = cart.reduce((sum, item) => sum + (item.quantity || 1), 0);
 
   return (
-    <nav className="bg-white/95 shadow-sm sticky top-0 z-50 border-b border-slate-200 backdrop-blur">
+    <nav className="bg-white shadow-lg sticky top-0 z-50 border-b border-gray-200">
       {/* Top Bar */}
-      <div className="bg-slate-950 text-slate-200 py-2">
+      <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
             <button
@@ -100,12 +100,12 @@ const Navbar = () => {
               navigate("/products"); 
             }}
           >
-            <div className="w-10 h-10 bg-slate-950 rounded-xl flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
+            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow">
               <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
               </svg>
             </div>
-            <h1 className="text-2xl font-bold text-slate-950">
+            <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-indigo-700 bg-clip-text text-transparent">
               EROH Shop
             </h1>
           </div>
@@ -118,14 +118,14 @@ const Navbar = () => {
                 placeholder="Search for products..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-12 pr-4 py-3 border border-slate-300 rounded-xl focus:outline-none focus:border-blue-600 focus:ring-4 focus:ring-blue-50 transition-colors"
+                className="w-full pl-12 pr-4 py-3 border-2 border-gray-300 rounded-lg focus:outline-none focus:border-blue-500 transition-colors"
               />
               <svg className="absolute left-4 top-3.5 w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               <button
                 type="submit"
-                className="absolute right-2 top-2 bg-slate-950 hover:bg-blue-700 text-white px-4 py-1.5 rounded-lg transition-colors"
+                className="absolute right-2 top-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-1.5 rounded-md transition-colors"
               >
                 Search
               </button>
