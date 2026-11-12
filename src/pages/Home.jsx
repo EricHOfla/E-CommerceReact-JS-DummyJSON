@@ -85,16 +85,16 @@ const Home = () => {
                 {/* Stats */}
                 <div className="grid grid-cols-3 gap-6 mt-12">
                   <div>
-                    <p className="text-4xl font-bold text-yellow-300">{products.length}+</p>
+                    <p className="text-3xl font-bold text-cyan-300">{products.length}</p>
                     <p className="text-blue-100 text-sm mt-1">Products</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-yellow-300">50K+</p>
-                    <p className="text-blue-100 text-sm mt-1">Customers</p>
+                    <p className="text-3xl font-bold text-cyan-300">{categories.length}</p>
+                    <p className="text-blue-100 text-sm mt-1">Categories shown</p>
                   </div>
                   <div>
-                    <p className="text-4xl font-bold text-yellow-300">4.9★</p>
-                    <p className="text-blue-100 text-sm mt-1">Rating</p>
+                    <p className="text-3xl font-bold text-cyan-300">{averageRating}★</p>
+                    <p className="text-blue-100 text-sm mt-1">Average rating</p>
                   </div>
                 </div>
               </div>
