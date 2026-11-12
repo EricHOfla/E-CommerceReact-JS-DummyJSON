@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
 const LoginPage = () => {
@@ -59,5 +59,4 @@ const LoginPage = () => {
   );
 };
 
-import { Link } from "react-router-dom";
 export default LoginPage;
