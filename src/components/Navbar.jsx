@@ -64,12 +64,6 @@ const Navbar = () => {
       <div className="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-2">
         <div className="max-w-7xl mx-auto px-4 flex justify-between items-center text-sm">
           <div className="flex items-center gap-6">
-            <button
-              onClick={() => navigate("/about")}
-              className="hover:text-blue-100 transition-colors font-medium"
-            >
-              About Us
-            </button>
             <span className="flex items-center gap-2">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -91,7 +85,7 @@ const Navbar = () => {
 
       {/* Main Navbar */}
       <div className="max-w-7xl mx-auto px-4 py-4">
-        <div className="flex justify-between items-center gap-4">
+        <div className="flex items-center justify-between gap-5">
           {/* Logo */}
           <div 
             className="flex items-center gap-3 cursor-pointer group" 
@@ -111,7 +105,7 @@ const Navbar = () => {
           </div>
 
           {/* Main navigation links */}
-          <div className="hidden md:flex items-center gap-5 whitespace-nowrap">
+          <div className="hidden xl:flex items-center gap-6 whitespace-nowrap shrink-0">
             <button
               type="button"
               onClick={() => navigate("/")}
@@ -136,7 +130,7 @@ const Navbar = () => {
           </div>
 
           {/* Search Bar - Desktop */}
-          <form onSubmit={handleSearch} className="hidden lg:flex flex-1 max-w-2xl">
+          <form onSubmit={handleSearch} className="hidden lg:flex flex-1 min-w-[180px] max-w-sm">
             <div className="relative w-full">
               <input
                 type="text"
@@ -158,12 +152,12 @@ const Navbar = () => {
           </form>
 
           {/* Right Actions */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-1 shrink-0">
             {/* Categories Dropdown - Desktop */}
             <div className="hidden lg:block relative">
               <button
                 onClick={() => setShowCategoryMenu(!showCategoryMenu)}
-                className="flex items-center gap-2 px-4 py-2 rounded-lg hover:bg-gray-100 transition-colors"
+                className="flex items-center gap-1.5 px-2 py-2 rounded-lg hover:bg-gray-100 transition-colors"
               >
                 <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
@@ -251,7 +245,7 @@ const Navbar = () => {
                   <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-full flex items-center justify-center text-white font-bold text-sm">
                     {user.firstName?.charAt(0)}{user.lastName?.charAt(0)}
                   </div>
-                  <span className="hidden md:inline text-gray-700 font-medium">{user.firstName}</span>
+                  <span className="hidden xl:inline text-gray-700 font-medium">{user.firstName}</span>
                   <svg className={`w-4 h-4 text-gray-700 transition-transform ${showUserMenu ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                   </svg>
@@ -334,6 +328,24 @@ const Navbar = () => {
           <div className="px-4 py-3 space-y-2">
             <div className="border-b border-gray-200 pb-2">
               <p className="px-4 py-2 text-sm font-semibold text-gray-500 uppercase">Menu</p>
+              <button
+                onClick={() => {
+                  navigate("/");
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg text-gray-700"
+              >
+                Home
+              </button>
+              <button
+                onClick={() => {
+                  navigate("/products");
+                  setMobileMenuOpen(false);
+                }}
+                className="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg text-gray-700"
+              >
+                Shop
+              </button>
               <button
                 onClick={() => {
                   navigate("/about");
