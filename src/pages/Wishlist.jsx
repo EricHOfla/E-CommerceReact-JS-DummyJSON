@@ -23,7 +23,7 @@ const Wishlist = () => {
   return (
     <>
       <Navbar />
-      <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12">
+      <div className="min-h-screen bg-slate-50 py-12">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header */}
           <div className="mb-8">
@@ -34,8 +34,8 @@ const Wishlist = () => {
                 </svg>
               </div>
               <div>
-                <h1 className="text-4xl font-bold text-gray-900">My Wishlist</h1>
-                <p className="text-gray-600 mt-1">
+                <h1 className="text-3xl font-bold tracking-tight text-slate-950 sm:text-4xl">My Wishlist</h1>
+                <p className="text-slate-600 mt-1">
                   {wishlist.length} {wishlist.length === 1 ? 'item' : 'items'} saved for later
                 </p>
               </div>
@@ -43,7 +43,7 @@ const Wishlist = () => {
           </div>
 
           {wishlist.length === 0 ? (
-            <div className="bg-white rounded-2xl shadow-md p-12 text-center">
+            <div className="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-12 text-center">
               <div className="inline-block mb-6">
                 <div className="w-32 h-32 bg-gradient-to-br from-pink-100 to-red-100 rounded-full flex items-center justify-center">
                   <svg className="w-16 h-16 text-pink-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -51,8 +51,8 @@ const Wishlist = () => {
                   </svg>
                 </div>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">Your Wishlist is Empty</h3>
-              <p className="text-gray-600 mb-6 max-w-md mx-auto">
+              <h3 className="text-2xl font-bold text-slate-950 mb-3">Your Wishlist is Empty</h3>
+              <p className="text-slate-600 mb-6 max-w-md mx-auto">
                 Start adding items you love to your wishlist. They'll be saved here for easy access!
               </p>
               <button
@@ -68,7 +68,7 @@ const Wishlist = () => {
               <div className="flex flex-wrap gap-3 mb-6">
                 <button
                   onClick={handleAddAllToCart}
-                  className="bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2"
+                  className="bg-slate-950 hover:from-slate-800 hover:to-slate-900 text-white px-6 py-3 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -88,10 +88,10 @@ const Wishlist = () => {
                 {wishlist.map((item) => (
                   <div
                     key={item.id}
-                    className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                    className="bg-white rounded-2xl border border-slate-200/80 shadow-sm overflow-hidden hover:shadow-xl transition-all duration-300 group"
                   >
                     {/* Product Image */}
-                    <div className="relative overflow-hidden bg-gray-100 h-56">
+                    <div className="relative overflow-hidden bg-slate-100 h-56">
                       <img
                         src={item.thumbnail || item.images?.[0] || "https://via.placeholder.com/300"}
                         alt={item.title}
@@ -115,11 +115,11 @@ const Wishlist = () => {
                     {/* Product Info */}
                     <div className="p-4">
                       <div className="mb-3">
-                        <h3 className="font-bold text-gray-900 text-lg mb-1 line-clamp-2 hover:text-blue-600 cursor-pointer">
+                        <h3 className="font-bold text-slate-950 text-lg mb-1 line-clamp-2 hover:text-blue-600 cursor-pointer">
                           {item.title}
                         </h3>
                         {item.brand && (
-                          <p className="text-xs text-gray-500 uppercase tracking-wide">{item.brand}</p>
+                          <p className="text-xs text-slate-500 uppercase tracking-wide">{item.brand}</p>
                         )}
                       </div>
 
@@ -140,7 +140,7 @@ const Wishlist = () => {
                               </svg>
                             ))}
                           </div>
-                          <span className="text-sm text-gray-600">{item.rating.toFixed(1)}</span>
+                          <span className="text-sm text-slate-600">{item.rating.toFixed(1)}</span>
                         </div>
                       )}
 
@@ -162,7 +162,7 @@ const Wishlist = () => {
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleMoveToCart(item)}
-                          className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-4 py-2 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
+                          className="flex-1 bg-slate-950 hover:from-slate-800 hover:to-slate-900 text-white px-4 py-2 rounded-lg font-semibold transition-all flex items-center justify-center gap-2"
                         >
                           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -190,7 +190,7 @@ const Wishlist = () => {
               <div className="mt-8 text-center">
                 <button
                   onClick={() => navigate("/products")}
-                  className="bg-white hover:bg-gray-50 text-gray-700 border-2 border-gray-300 px-8 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2"
+                  className="bg-white hover:bg-gray-50 text-slate-700 border border-slate-300 px-8 py-3 rounded-lg font-semibold transition-all inline-flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
