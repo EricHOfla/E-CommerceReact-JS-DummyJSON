@@ -7,7 +7,7 @@ import Navbar from "../components/Navbar";
 const Category = () => {
   const { name } = useParams();
   const [searchParams] = useSearchParams();
-  const { products, loading } = useProducts();
+  const { products, loading, error } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortBy, setSortBy] = useState("default");
   const [priceRange, setPriceRange] = useState("all");
@@ -74,6 +74,7 @@ const Category = () => {
       <Navbar />
 
       <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+        {error && <div role="alert" className="mx-auto max-w-7xl px-4 pt-6"><div className="rounded-lg border border-red-200 bg-red-50 p-4 text-sm text-red-700">{error}</div></div>}
         {/* Modern Hero Section */}
         <div className="relative bg-white border-b border-gray-200 overflow-hidden">
           {/* Background Pattern */}
