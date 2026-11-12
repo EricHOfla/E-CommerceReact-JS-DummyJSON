@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import { useProducts } from "../context/ProductsContext";
@@ -14,10 +14,17 @@ const ProductDetails = () => {
   const { addToWishlist, wishlist } = useWishlist();
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const [selectedImage, setSelectedImage] = useState("");
   const product = useMemo(
     () => products.find((item) => String(item.id) === id),
     [products, id]
   );
+
+  const galleryImages = product ? [...new Set([product.thumbnail, ...(product.images || [])].filter(Boolean))] : [];
+
+  useEffect(() => {
+    setSelectedImage(galleryImages[0] || "");
+  }, [product?.id]);
 
   const requireLogin = (action) => {
     if (!isAuthenticated) {
@@ -45,9 +52,18 @@ const ProductDetails = () => {
             </div>
           ) : (
             <section className="mt-6 grid gap-10 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm md:grid-cols-2 md:p-8">
-              <div className="flex min-h-80 items-center justify-center rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-5">
-                <img src={product.thumbnail || product.images?.[0]} alt={product.title} className="max-h-[460px] w-full object-contain" />
+              <div className="flex min-h-80 items-center justify-center rounded-xl bg-gray-100 p-5">
+                <img src={selectedImage || product.thumbnail || product.images?.[0]} alt={product.title} className="max-h-[460px] w-full object-contain" />
               </div>
+              {galleryImages.length > 1 && (
+                <div className="mt-4 flex flex-wrap gap-3 md:col-start-1" aria-label="Product images">
+                  {galleryImages.map((image, index) => (
+                    <button key={image} type="button" onClick={() => setSelectedImage(image)} aria-label={"View product image " + (index + 1)} aria-pressed={selectedImage === image} className={"h-16 w-16 overflow-hidden rounded-lg border-2 bg-white p-1 " + (selectedImage === image ? "border-blue-600" : "border-gray-200 hover:border-blue-300")}>
+                      <img src={image} alt="" className="h-full w-full object-contain" />
+                    </button>
+                  ))}
+                </div>
+              )}
               <div className="flex flex-col justify-center">
                 <p className="text-sm font-semibold uppercase tracking-wide text-blue-700">{product.category}</p>
                 <h1 className="mt-3 text-3xl font-bold tracking-tight text-gray-900">{product.title}</h1>
@@ -60,7 +76,7 @@ const ProductDetails = () => {
                 </p>
                 <div className="mt-8 flex flex-wrap gap-3">
                   <button onClick={() => requireLogin(() => { addToCart(product); navigate("/cart"); })} disabled={product.stock === 0} className="rounded-lg bg-blue-700 px-6 py-3 font-semibold text-white transition hover:bg-blue-800 disabled:cursor-not-allowed disabled:bg-gray-400">Add to cart</button>
-                  <button onClick={() => requireLogin(() => addToWishlist(product))} aria-pressed={wishlist.some((item) => item.id === product.id)} className="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-800 transition hover:bg-gradient-to-br from-gray-50 to-gray-100">
+                  <button onClick={() => requireLogin(() => addToWishlist(product))} aria-pressed={wishlist.some((item) => item.id === product.id)} className="rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-800 transition hover:bg-gray-50">
                     {wishlist.some((item) => item.id === product.id) ? "Saved to wishlist" : "Add to wishlist"}
                   </button>
                 </div>
