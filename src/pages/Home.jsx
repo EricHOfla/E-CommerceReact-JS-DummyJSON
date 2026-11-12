@@ -22,6 +22,9 @@ const Home = () => {
   }, []);
 
   const featuredProducts = products.slice(0, 8);
+  const averageRating = products.length
+    ? (products.reduce((sum, product) => sum + Number(product.rating || 0), 0) / products.length).toFixed(1)
+    : "—";
   const dealsProducts = products.filter(p => p.discountPercentage > 15).slice(0, 4);
   const goToProducts = () => navigate("/products");
 
