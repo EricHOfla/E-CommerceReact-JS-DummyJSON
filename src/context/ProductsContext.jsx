@@ -15,7 +15,7 @@ export const ProductsProvider = ({ children }) => {
       setLoading(true);
       setError("");
       try {
-        const { data } = await api.get("/products", { params: { limit: 100 } });
+        const { data } = await api.get("/products", { params: { limit: 0 } });
         if (!Array.isArray(data?.products)) {
           throw new Error("The product service returned an unexpected response.");
         }
