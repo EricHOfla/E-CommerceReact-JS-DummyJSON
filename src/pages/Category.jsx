@@ -1,11 +1,12 @@
 import { useEffect, useState } from "react";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useProducts } from "../context/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
 
 const Category = () => {
   const { name } = useParams();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { products, loading, error } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -13,6 +14,10 @@ const Category = () => {
   const [priceRange, setPriceRange] = useState("all");
   const [viewMode, setViewMode] = useState("grid");
   const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+  const [inStockOnly, setInStockOnly] = useState(false);
+  const [minimumRating, setMinimumRating] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 12;
 
   useEffect(() => {
     setSearchQuery(searchParams.get("search") || "");
@@ -42,6 +47,9 @@ const Category = () => {
       });
     }
 
+    if (inStockOnly) filtered = filtered.filter((p) => Number(p.stock) > 0);
+    if (minimumRating !== "all") filtered = filtered.filter((p) => Number(p.rating || 0) >= Number(minimumRating));
+
     // Apply sorting
     const sorted = [...filtered].sort((a, b) => {
       if (sortBy === "price-asc") return (a.price || 0) - (b.price || 0);
@@ -53,7 +61,14 @@ const Category = () => {
     });
 
     setFilteredProducts(sorted);
-  }, [products, name, sortBy, priceRange, searchQuery]);
+  }, [products, name, sortBy, priceRange, searchQuery, inStockOnly, minimumRating]);
+
+  useEffect(() => { setCurrentPage(1); }, [name, searchQuery, sortBy, priceRange, inStockOnly, minimumRating]);
+
+  const totalPages = Math.ceil(filteredProducts.length / pageSize);
+  const paginatedProducts = filteredProducts.slice((currentPage - 1) * pageSize, currentPage * pageSize);
+  const firstResult = filteredProducts.length ? (currentPage - 1) * pageSize + 1 : 0;
+  const lastResult = Math.min(currentPage * pageSize, filteredProducts.length);
 
   if (loading) {
     return (
@@ -160,7 +175,7 @@ const Category = () => {
         {/* Filters & Sort Bar */}
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="bg-white rounded-xl shadow-md p-6 mb-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4">
               
               {/* Search Bar */}
               <div className="lg:col-span-2">
@@ -212,6 +227,22 @@ const Category = () => {
                 </select>
               </div>
 
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="stock-filter">Availability</label>
+                <select id="stock-filter" value={inStockOnly ? "in-stock" : "all"} onChange={(e) => setInStockOnly(e.target.value === "in-stock")} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white">
+                  <option value="all">All products</option>
+                  <option value="in-stock">In stock only</option>
+                </select>
+              </div>
+              <div>
+                <label className="block text-sm font-medium text-gray-700 mb-2" htmlFor="rating-filter">Minimum Rating</label>
+                <select id="rating-filter" value={minimumRating} onChange={(e) => setMinimumRating(e.target.value)} className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-white">
+                  <option value="all">Any rating</option>
+                  <option value="3">3★ and above</option>
+                  <option value="4">4★ and above</option>
+                  <option value="4.5">4.5★ and above</option>
+                </select>
+              </div>
               {/* View Mode Toggle */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">View</label>
@@ -269,6 +300,8 @@ const Category = () => {
                   </button>
                 </span>
               )}
+              {inStockOnly && <span className="inline-flex items-center gap-2 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm">In stock only <button onClick={() => setInStockOnly(false)} aria-label="Remove in-stock filter">×</button></span>}
+              {minimumRating !== "all" && <span className="inline-flex items-center gap-2 px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm">{minimumRating}★ and above <button onClick={() => setMinimumRating("all")} aria-label="Remove rating filter">×</button></span>}
               {sortBy !== "default" && (
                 <span className="inline-flex items-center gap-2 px-3 py-1 bg-purple-100 text-purple-800 rounded-full text-sm">
                   Sort: {sortBy.replace("-", " ")}
@@ -279,12 +312,14 @@ const Category = () => {
                   </button>
                 </span>
               )}
-              {(searchQuery || priceRange !== "all" || sortBy !== "default") && (
+              {(searchQuery || priceRange !== "all" || sortBy !== "default" || inStockOnly || minimumRating !== "all") && (
                 <button
                   onClick={() => {
                     setSearchQuery("");
                     setPriceRange("all");
                     setSortBy("default");
+                    setInStockOnly(false);
+                    setMinimumRating("all");
                   }}
                   className="px-3 py-1 text-sm text-red-600 hover:text-red-800 font-medium"
                 >
@@ -297,7 +332,7 @@ const Category = () => {
           {/* Results Summary */}
           <div className="flex items-center justify-between mb-6">
             <p className="text-gray-600">
-              Showing <span className="font-semibold text-gray-900">{filteredProducts.length}</span> {filteredProducts.length === 1 ? 'result' : 'results'}
+              Showing <span className="font-semibold text-gray-900">{firstResult}–{lastResult}</span> of <span className="font-semibold text-gray-900">{filteredProducts.length}</span> results
             </p>
           </div>
         </div>
@@ -336,7 +371,7 @@ const Category = () => {
                 ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
                 : "space-y-4"
             }>
-              {filteredProducts.map((product, index) => (
+              {paginatedProducts.map((product, index) => (
                 <div
                   key={product.id}
                   className={`transform transition-all duration-300 ${
@@ -392,7 +427,7 @@ const Category = () => {
                               </span>
                             )}
                           </div>
-                          <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
+                          <button onClick={() => navigate(`/product/${product.id}`)} className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition-colors">
                             View Details
                           </button>
                         </div>
@@ -402,6 +437,15 @@ const Category = () => {
                 </div>
               ))}
             </div>
+          )}
+          {totalPages > 1 && (
+            <nav className="mt-10 flex flex-wrap items-center justify-center gap-2" aria-label="Product pagination">
+              <button type="button" onClick={() => setCurrentPage((page) => Math.max(1, page - 1))} disabled={currentPage === 1} className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-40">Previous</button>
+              {Array.from({ length: totalPages }, (_, index) => index + 1).map((page) => (
+                <button key={page} type="button" onClick={() => setCurrentPage(page)} aria-current={currentPage === page ? "page" : undefined} className={`h-10 min-w-10 rounded-lg px-3 text-sm font-semibold ${currentPage === page ? "bg-blue-600 text-white" : "border border-gray-300 bg-white text-gray-700 hover:bg-gray-100"}`}>{page}</button>
+              ))}
+              <button type="button" onClick={() => setCurrentPage((page) => Math.min(totalPages, page + 1))} disabled={currentPage === totalPages} className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 disabled:cursor-not-allowed disabled:opacity-40">Next</button>
+            </nav>
           )}
         </div>
       </div>
