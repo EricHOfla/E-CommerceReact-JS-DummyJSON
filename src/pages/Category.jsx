@@ -1,17 +1,22 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import { useProducts } from "../context/ProductsContext";
 import ProductCard from "../components/ProductCard";
 import Navbar from "../components/Navbar";
 
 const Category = () => {
   const { name } = useParams();
+  const [searchParams] = useSearchParams();
   const { products, loading } = useProducts();
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortBy, setSortBy] = useState("default");
   const [priceRange, setPriceRange] = useState("all");
   const [viewMode, setViewMode] = useState("grid");
-  const [searchQuery, setSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState(searchParams.get("search") || "");
+
+  useEffect(() => {
+    setSearchQuery(searchParams.get("search") || "");
+  }, [searchParams]);
 
   useEffect(() => {
     let filtered = name
@@ -19,9 +24,9 @@ const Category = () => {
       : products;
 
     // Apply search filter
-    if (searchQuery) {
+    if (searchQuery.trim()) {
       filtered = filtered.filter((p) =>
-        p.title?.toLowerCase().includes(searchQuery.toLowerCase())
+        [p.title, p.description, p.brand, p.category].some((value) => value?.toLowerCase().includes(searchQuery.trim().toLowerCase()))
       );
     }
 
