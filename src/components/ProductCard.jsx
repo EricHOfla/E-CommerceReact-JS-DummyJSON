@@ -25,6 +25,7 @@ const ProductCard = ({ product }) => {
 
   const handleAddToCart = (e) => {
     e.stopPropagation();
+    if (Number(product.stock) <= 0) return;
     if (!user) {
       navigate("/login");
       return;
@@ -92,6 +93,9 @@ const ProductCard = ({ product }) => {
         {/* Wishlist Button */}
         <button
           onClick={handleAddToWishlist}
+          type="button"
+          aria-label={isInWishlist ? "Remove from wishlist" : "Add to wishlist"}
+          aria-pressed={isInWishlist}
           className={`absolute top-3 right-3 w-10 h-10 rounded-full flex items-center justify-center shadow-lg transition-all ${
             isInWishlist 
               ? 'bg-pink-500 text-white' 
@@ -104,7 +108,7 @@ const ProductCard = ({ product }) => {
         </button>
 
         {/* Stock Badge */}
-        {product.stock !== undefined && product.stock < 10 && (
+        {product.stock !== undefined && product.stock > 0 && product.stock < 10 && (
           <div className="absolute bottom-3 left-3 bg-orange-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
             Only {product.stock} left
           </div>
@@ -169,12 +173,14 @@ const ProductCard = ({ product }) => {
         <div className="flex gap-2">
           <button
             onClick={handleAddToCart}
-            className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
+            type="button"
+            disabled={Number(product.stock) <= 0}
+            className="flex-1 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 disabled:cursor-not-allowed disabled:from-gray-400 disabled:to-gray-500 bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800 text-white px-4 py-2 rounded-lg font-semibold transition-all shadow-md hover:shadow-lg flex items-center justify-center gap-2"
           >
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
             </svg>
-            Add to Cart
+            {Number(product.stock) <= 0 ? "Out of Stock" : "Add to Cart"}
           </button>
         </div>
       </div>
