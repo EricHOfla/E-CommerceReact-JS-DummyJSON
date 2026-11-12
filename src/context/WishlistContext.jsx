@@ -1,31 +1,37 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
-const WishlistContext = createContext();
+const WishlistContext = createContext(null);
+
+const readWishlist = () => {
+  try {
+    const value = JSON.parse(localStorage.getItem("wishlist") || "[]");
+    return Array.isArray(value) ? value : [];
+  } catch {
+    localStorage.removeItem("wishlist");
+    return [];
+  }
+};
 
 export const WishlistProvider = ({ children }) => {
-  const [wishlist, setWishlist] = useState(
-    JSON.parse(localStorage.getItem("wishlist")) || []
-  );
+  const [wishlist, setWishlist] = useState(readWishlist);
 
-  // Persist wishlist
   useEffect(() => {
     localStorage.setItem("wishlist", JSON.stringify(wishlist));
   }, [wishlist]);
 
   const addToWishlist = (product) => {
-    const exists = wishlist.find((item) => item.id === product.id);
-    if (!exists) {
-      setWishlist([...wishlist, product]);
-    }
+    if (!product?.id) return;
+    setWishlist((current) =>
+      current.some((item) => item.id === product.id)
+        ? current
+        : [...current, product]
+    );
   };
 
-  const removeFromWishlist = (id) => {
-    setWishlist(wishlist.filter((item) => item.id !== id));
-  };
+  const removeFromWishlist = (id) =>
+    setWishlist((current) => current.filter((item) => item.id !== id));
 
-  const clearWishlist = () => {
-    setWishlist([]);
-  };
+  const clearWishlist = () => setWishlist([]);
 
   return (
     <WishlistContext.Provider
@@ -36,4 +42,8 @@ export const WishlistProvider = ({ children }) => {
   );
 };
 
-export const useWishlist = () => useContext(WishlistContext);
+export const useWishlist = () => {
+  const context = useContext(WishlistContext);
+  if (!context) throw new Error("useWishlist must be used within a WishlistProvider");
+  return context;
+};
