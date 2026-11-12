@@ -348,16 +348,18 @@ const Category = () => {
               </div>
               <h3 className="text-2xl font-semibold text-gray-700 mb-2">No Products Found</h3>
               <p className="text-gray-500 text-lg mb-4">
-                {searchQuery || priceRange !== "all" 
+                {searchQuery || priceRange !== "all" || inStockOnly || minimumRating !== "all"
                   ? "No products match your filters. Try adjusting your search criteria."
                   : "We couldn't find any products in this category."}
               </p>
-              {(searchQuery || priceRange !== "all" || sortBy !== "default") && (
+              {(searchQuery || priceRange !== "all" || sortBy !== "default" || inStockOnly || minimumRating !== "all") && (
                 <button
                   onClick={() => {
                     setSearchQuery("");
                     setPriceRange("all");
                     setSortBy("default");
+                    setInStockOnly(false);
+                    setMinimumRating("all");
                   }}
                   className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
                 >
